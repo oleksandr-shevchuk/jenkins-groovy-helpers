@@ -22,8 +22,4 @@ class GerritHelper {
         def sshKey = [context.env.JENKINS_HOME, '.ssh', 'id_rsa'].join('/')
         "ssh -i ${sshKey} ${sshUser}@${context.params.GERRIT_HOST} -p ${context.params.GERRIT_PORT} gerrit"
     }
-
-    def run() {
-        gerritReview("Verified", 0, "Starting Check job ${context.currentBuild.absoluteUrl}")
-    }
 }
