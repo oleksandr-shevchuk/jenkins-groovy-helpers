@@ -1,5 +1,8 @@
 import hudson.console.ModelHyperlinkNote
 
+def context
+def currentBuild
+
 def runJob(jobName, jobParameters){
     println 'in lib'
     def job = build job: jobName, parameters: jobParameters, propagate: false
