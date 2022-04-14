@@ -1,24 +1,19 @@
 import hudson.console.ModelHyperlinkNote
 
-class JobRunner{
-    def context
-    def currentBuild
-
-    def runJob(jobName, jobParameters){
-        println 'in lib'
-        def job = build job: jobName, parameters: jobParameters, propagate: false
-        context.println hudson.console.ModelHyperlinkNote.encodeTo("/job/${params.WORKER}/${j.number}/console", jobName + " #" + job.number) + " completed: " + job.result
-        if (job.result != "SUCCESS")
-        {
-            currentBuild.result = 'FAILURE'
-        }
+def run(context, jobName, jobParameters){
+    println 'in lib'
+    def job = build job: jobName, parameters: jobParameters, propagate: false
+    context.println hudson.console.ModelHyperlinkNote.encodeTo("/job/${params.WORKER}/${j.number}/console", jobName + " #" + job.number) + " completed: " + job.result
+    if (job.result != "SUCCESS")
+    {
+        context.currentBuild.result = 'FAILURE'
     }
+}
 
-    def customLog(text){
-        println "custom log " + text
-    }
+def customLog(text){
+    println "custom log " + text
+}
 
-    def testFunc(){
-        println "this is test func"
-    }
+def testFunc(){
+    println "this is test func"
 }
