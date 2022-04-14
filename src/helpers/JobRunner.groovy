@@ -10,4 +10,12 @@ def runJob(jobName, jobParameters){
     }
 }
 
+def customLog(text){
+    println "custom log " + text
+}
+
+def testFunc(){
+    println "this is test func"
+}
+
 return this
