@@ -1,13 +1,13 @@
 import helpers.RetriesExceededException
+import helpers.CommandRunner
 
 class GerritHelper {
     def context
-    def commandRunner
 
     def gerritReview(label, value, message=null) {
         def messageParam = (message) ? "--message '\"${message}\"'" : ''
         try {
-            commandRunner.runCommand(context, "${gerritSSH()} review --label ${label}=${value} " +
+            CommandRunner.runCommand(context, "${gerritSSH()} review --label ${label}=${value} " +
                                     "${messageParam} " + context.params.GERRIT_PATCHSET_REVISION)
         } catch (RetriesExceededException e) {
             context.println e
