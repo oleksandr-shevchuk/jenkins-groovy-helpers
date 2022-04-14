@@ -9,3 +9,5 @@ def runJob(jobName, jobParameters){
         currentBuild.result = 'FAILURE'
     }
 }
+
+return this
