@@ -1,6 +1,6 @@
-import helpers.RetriesExceededException
-
 package helpers
+
+import helpers.RetriesExceededException
 
 def static runCommand(context, cmd, retries=5) {
     def run = {

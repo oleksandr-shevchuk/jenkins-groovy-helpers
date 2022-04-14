@@ -1,3 +1,5 @@
+package helpers
+
 import hudson.console.ModelHyperlinkNote
 
 def run(context, jobName, jobParameters){
