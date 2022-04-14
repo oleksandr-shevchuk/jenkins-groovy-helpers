@@ -1,7 +1,5 @@
 import hudson.console.ModelHyperlinkNote
 
-package helpers
-
 def runJob(jobName, jobParameters){
     println 'in lib'
     def job = build job: jobName, parameters: jobParameters, propagate: false
