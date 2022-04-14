@@ -5,7 +5,7 @@ import hudson.FilePath.FileCallable
 
 class FileHelper{
     def static createFile(fileName, contents, artifactsDir){
-        path = new FilePath(artifactsDir)
+        def path = new FilePath(artifactsDir)
 
         def callable = { dir, channel ->
             if (!dir.exists()) {
