@@ -1,8 +1,6 @@
 import helpers.RetriesExceededException
 
-def context
-
-def runCommand(cmd, retries=5) {
+def runCommand(context, cmd, retries=5) {
     def run = {
         def proc = cmd.execute()
         proc.waitFor()

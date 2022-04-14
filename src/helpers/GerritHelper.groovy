@@ -7,7 +7,7 @@ class GerritHelper {
     def gerritReview(label, value, message=null) {
         def messageParam = (message) ? "--message '\"${message}\"'" : ''
         try {
-            commandRunner.runCommand("${gerritSSH()} review --label ${label}=${value} " +
+            commandRunner.runCommand(context, "${gerritSSH()} review --label ${label}=${value} " +
                                     "${messageParam} " + context.params.GERRIT_PATCHSET_REVISION)
         } catch (RetriesExceededException e) {
             context.println e
