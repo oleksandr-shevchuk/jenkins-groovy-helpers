@@ -1,3 +1,5 @@
+import helpers.RetriesExceededException
+
 class GerritHelper {
     def context
     def commandRunner
