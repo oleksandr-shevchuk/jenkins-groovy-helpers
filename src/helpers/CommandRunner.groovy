@@ -1,3 +1,5 @@
+import helpers.RetriesExceededException
+
 def context
 
 def runCommand(cmd, retries=5) {
