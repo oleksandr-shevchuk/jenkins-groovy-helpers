@@ -1,5 +1,7 @@
 import helpers.RetriesExceededException
 
+package helpers
+
 def static runCommand(context, cmd, retries=5) {
     def run = {
         def proc = cmd.execute()
