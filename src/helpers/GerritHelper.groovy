@@ -17,6 +17,16 @@ class GerritHelper {
         }
     }
 
+    def gerritReview(message) {
+        try {
+            CommandRunner.runCommand("${gerritSSH()} review --message '\"${message}\"' " +
+                            context.params.GERRIT_PATCHSET_REVISION)
+        } catch (RetriesExceededException e) {
+            context.println e
+            throw new Exception(e)
+        }
+    }
+
     def gerritSSH() {
         def sshUser = 'svc_gerrit'
         def sshKey = [context.env.JENKINS_HOME, '.ssh', 'id_rsa'].join('/')

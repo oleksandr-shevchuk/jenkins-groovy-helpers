@@ -9,4 +9,6 @@ def run(context, jobName, jobParameters = null){
     {
         context.currentBuild.result = 'FAILURE'
     }
+    
+    job
 }
