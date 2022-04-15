@@ -69,7 +69,7 @@ class GerritHelper {
         def changeQuery = "${gerritSSH()} query ${context.params.GERRIT_CHANGE_ID} --format=json --current-patch-set"
         def jsonText, err, exitValue
         try {
-            (jsonText, err, exitValue) = CommandRunner.runCommand(changeQuery)
+            (jsonText, err, exitValue) = CommandRunner.runCommand(context, changeQuery)
         } catch (RetriesExceededException e) {
             context.println e
             throw new Exception("Timed out trying to fetch change info from Gerrit. " +
@@ -109,7 +109,7 @@ class GerritHelper {
             jobResults = CommandRunner.runParallel(context, parallelJobs)
         } else {
             def warning = "Warning: no verification jobs exist for the paths modified by this patch"
-            CommandRunner.runCommand("${gerritSSH()} review --message '\"${warning}\"' "
+            CommandRunner.runCommand(context, "${gerritSSH()} review --message '\"${warning}\"' "
                                     + context.params.GERRIT_PATCHSET_REVISION)
         }
         
