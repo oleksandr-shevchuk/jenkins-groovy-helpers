@@ -10,9 +10,7 @@ class GerritHelper {
     def gerritReview(label, value, message=null) {
         def messageParam = (message) ? "--message '\"${message}\"'" : ''
         try {
-            //CommandRunner.runCommand(context, "${gerritSSH()} review --label ${label}=${value} " +
-            //                        "${messageParam} " + context.params.GERRIT_PATCHSET_REVISION)
-            context.println("${gerritSSH()} review --label ${label}=${value} " +
+            CommandRunner.runCommand(context, "${gerritSSH()} review --label ${label}=${value} " +
                                     "${messageParam} " + context.params.GERRIT_PATCHSET_REVISION)
         } catch (RetriesExceededException e) {
             context.println e
@@ -22,9 +20,7 @@ class GerritHelper {
 
     def gerritReview(message) {
         try {
-            //CommandRunner.runCommand(context, "${gerritSSH()} review --message '\"${message}\"' " +
-            //                context.params.GERRIT_PATCHSET_REVISION)
-            context.println("${gerritSSH()} review --message '\"${message}\"' " +
+            CommandRunner.runCommand(context, "${gerritSSH()} review --message '\"${message}\"' " +
                             context.params.GERRIT_PATCHSET_REVISION)
         } catch (RetriesExceededException e) {
             context.println e
@@ -35,8 +31,7 @@ class GerritHelper {
     def gerritSubmit() {
         try {
             context.println "SUBMIT"
-            //CommandRunner.runCommand(context, "${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
-            context.println(context, "${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
+            CommandRunner.runCommand(context, "${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
         } catch (RetriesExceededException e) {
             context.println e
             throw new Exception(e)
