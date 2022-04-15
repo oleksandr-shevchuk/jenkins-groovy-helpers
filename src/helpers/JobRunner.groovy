@@ -24,5 +24,11 @@ def runParallel(context, jobs){
         }
     }
 
-    parallel executions
+    def result = parallel executions
+    def rawResult = []
+    for(int i = 0; i < jobs.size(); i++){
+        rawResult[i] = result["${i}"].rawResult
+    }
+
+    rawResult
 }
