@@ -23,5 +23,7 @@ def runParallel(context, jobs){
         }
     }
 
+    context.println executions
+
     parallel executions
 }
