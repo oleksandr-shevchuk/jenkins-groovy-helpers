@@ -19,16 +19,13 @@ def runParallel(context, jobs){
     for(int i = 0; i < jobs.size(); i++){
         def (job, parameters) = jobs[i]
         executions[i] = {
-            context.println job + " with " + parameters
             run(context, job, parameters)
         }
     }
 
     def result = parallel executions
-    def rawResult = []
-    for(int i = 0; i < jobs.size(); i++){
-        rawResult[i] = result["${i}"].rawBuild
-    }
 
-    rawResult
+    result.collect{ r ->
+        r.rawBuild
+    }
 }
