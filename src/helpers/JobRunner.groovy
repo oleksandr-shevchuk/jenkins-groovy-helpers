@@ -14,9 +14,9 @@ def run(context, jobName, jobParameters = null){
 }
 
 def runParallel(context, jobs){
-    def executions = []
+    def executions = [:]
     for(int i = 0; i < jobs.size(); i++){
-        executions << {
+        executions[i] = {
             def (job, parameters) = jobs[i]
             run(context, job, parameters)
         }
