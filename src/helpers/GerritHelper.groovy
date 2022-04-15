@@ -35,7 +35,8 @@ class GerritHelper {
     def gerritSubmit() {
         try {
             context.println "SUBMIT"
-            CommandRunner.runCommand("${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
+            //CommandRunner.runCommand(context, "${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
+            context.println(context, "${gerritSSH()} review --submit ${context.params.GERRIT_PATCHSET_REVISION}")
         } catch (RetriesExceededException e) {
             context.println e
             throw new Exception(e)
@@ -46,7 +47,7 @@ class GerritHelper {
         def changeQuery = "${gerritSSH()} query ${context.params.GERRIT_CHANGE_ID} --format=json --files --patch-sets"
         def jsonText, err, exitValue
         try {
-            (jsonText, err, exitValue) = CommandRunner.runCommand(changeQuery)
+            (jsonText, err, exitValue) = CommandRunner.runCommand(context, changeQuery)
         } catch (RetriesExceededException e) {
             context.println e
             throw new Exception("Timed out trying to fetch change info from Gerrit. " +
