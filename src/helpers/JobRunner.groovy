@@ -26,6 +26,6 @@ def runParallel(context, jobs){
     def result = parallel executions
 
     result.collect{ r ->
-        r.rawBuild
+        r.value.rawBuild
     }
 }
