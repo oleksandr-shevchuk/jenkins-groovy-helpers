@@ -20,11 +20,9 @@ def runParallel(context, jobs){
         def (job, parameters) = jobs[i]
         executions[i] = {
             context.println job + " with " + parameters
-            //run(context, job, parameters)
+            run(context, job, parameters)
         }
     }
-
-    context.println executions
 
     parallel executions
 }
