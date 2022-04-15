@@ -9,6 +9,18 @@ def run(context, jobName, jobParameters = null){
     {
         context.currentBuild.result = 'FAILURE'
     }
-    
+
     job
+}
+
+def runParallel(context, jobs){
+    def executions = [:]
+    for(int i = 0; i < jobs.length; i++){
+        executions[i] = {
+            def (job, parameters) = jobs[i]
+            run(context, job, parameters)
+        }
+    }
+
+    parallel executions
 }
